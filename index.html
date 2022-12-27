@@ -1,0 +1,227 @@
+<!doctype html>
+<html class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="src/assets/main.js"></script>
+    <!-- <link rel="stylesheet" href="./src/assets/styles.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="relative bg-white dark:bg-black overflow-hidden">
+        <div class="max-w-7xl mx-auto dark:bg-black ">
+            <div class="relative z-10 pb-8  sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-16">
+                <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/4"
+                    fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                    <polygon points="50,0 100,0 50,100 0,100" />
+                </svg>
+                <div>
+                    <div class="relative pt-6 px-4 sm:px-6 lg:px-8">
+                        <nav class="relative flex items-center justify-between sm:h-10 lg:justify-start"
+                            aria-label="Global">
+                            <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
+                                <div class="flex items-center justify-between w-full md:w-auto">
+                                    <a href="#">
+                                        <span class="sr-only">Title</span>
+                                        <img class="h-8 w-auto sm:h-10"
+                                            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
+                                <a href="#" class="font-medium text-gray-500 hover:text-gray-900"
+                                    onclick="restoreHomeUI()">TV Shows</a>
+                                <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Peliculas</a>
+                                <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Contacto</a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- <div>
+                    <div class="flex flex-col items-center justify-start bg-gray xl:mt-8">
+                        <input type="text" placeholder="Search TV shows" id="tv-search"
+                            class="w-1/2 h-10 border-2 focus:outline-none focus:border-indigo-600 border-black-600 rounded p-1" />
+                    </div>
+                </div> -->
+
+                <!-- <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-20">
+                    <div class="sm:text-center lg:text-left">
+                        <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                            <span class="block xl:inline">Wednesday</span>
+                            <span class="block text-indigo-600 xl:inline">2002</span>
+                        </h1>
+                        <p
+                            class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                            Wednesday Addams is sent to Nevermore Academy, a bizarre boarding school where she attempts
+                            to master her psychic powers, stop a monstrous killing spree of the town citizens, and solve
+                            the supernatural mystery that affected her family 25 years ago — all while navigating her
+                            new relationships.</p>
+                    </div>
+                </main> -->
+                <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-20">
+
+                    <div class="sm:text-center lg:text-left">
+                        <h1 class="text-2xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-4xl">
+                            <div class="arrow-go-back inline-block hidden cursor-pointer" onclick="restoreHomeUI()">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                                </svg>
+                            </div>
+                            <span class="block xl:inline" id="title-search-primary">Busca tus</span>
+                            <span class="block text-indigo-600 xl:inline" id="title-search-secondary">
+                                TV Shows favoritos
+                            </span>
+
+                        </h1>
+                    </div>
+                    <div>
+                        <div class="flex flex-col justify-start bg-gray xl:mt-6">
+                            <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-0 md:text-xl lg:mx-0"
+                                id="overview">
+                                Obten informacion actualizada de tus series de television favoritas, reviews, imagenes
+                                exlusivas, y mucho mas, con nuestro buscador online 100% gratuito.</p>
+                        </div>
+                        <div class="h-96" id="search-container">
+                            <form id="form-search" class="xl:mt-4">
+                                <input type="text" placeholder="Wednesday, Game of thrones..." id="tv-search"
+                                    class="w-1/2 h-10 border-2 focus:outline-none focus:border-indigo-600 border-black-600 rounded p-1" />
+                                <span class="text font-normal sm:text-gray-600 ml-4">⬅️ Escribe aqui!</span>
+                            </form>
+
+                            <span class="invisible" id="loading-text">...loading</span>
+                            <div class="ml-6" id="search-results-list-container">
+                                <ul class="list-disc list-outside" id="search-results-list">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- Carousel -->
+        <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 hidden" id="images-carousel">
+            <div id="carouselExampleControls" class="carousel slide relative" data-bs-ride="carousel">
+                <div class="carousel-inner relative w-full overflow-hidden">
+                    <div class="carousel-item active relative float-left w-full">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="block w-full"
+                            alt="Wild Landscape" />
+                    </div>
+                    <div class="carousel-item relative float-left w-full">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp" class="block w-full" alt="Camera" />
+                    </div>
+                    <div class="carousel-item relative float-left w-full">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp" class="block w-full"
+                            alt="Exotic Fruits" />
+                    </div>
+                </div>
+                <button
+                    class="carousel-control-prev absolute top-0 bottom-0 ml-12 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+                    type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                    class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+                    type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Carousel -->
+
+        <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2" id="landing-image">
+            <img class="h-56 w-full object-cover sm:h-72 md:h-auto lg:w-full lg:h-180"
+                src="https://images.pexels.com/photos/7991259/pexels-photo-7991259.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                alt="" id="search-main-img">
+            <!-- src="https://image.tmdb.org/t/p/w1280/xnCDJZR2j4PSfscuwDfCkiCZ4h4.jpg" alt=""> -->
+        </div>
+    </div>
+    <div class="bg-white xl:pb-16">
+        <div class="max-w-2xl mx-auto py-16 px-4 sm:py-0 sm:px-6 lg:max-w-7xl lg:px-8 visible invisible" id="seasons-content-container">
+            <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Episodes</h2>
+            <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8" id="seasons-content">
+                <!-- content -->
+                <div class="w-fit p-4 border-2 border-slate-100 rounded-lg ">
+                    <div class="whitespace-normal">
+                        <img loading="lazy"
+                            src="https://www.themoviedb.org/t/p/w227_and_h127_bestv2/vaoNDFmj7DQH7PpAy9YWgLVylPP.jpg"
+                            alt="" height="127" width="227" class="mr-0 pr-0 rounded-lg">
+                        <p class="px-0 mx-0 pt-4 w-56 text-center text-base font-medium">1 Wednesday's Child Is Full of
+                            Woe
+                        </p>
+                    </div>
+                    <div class="py-4">
+                        <p class=" text-sm font-light w-56">When a deliciously wicked prank gets Wednesday expelled,
+                            her parents ship her off to
+                            Nevermore Academy, the boarding school where they fell in love.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="bg-gray-50">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+            <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                <span class="block">Contact</span>
+                <span class="block text-indigo-600">keep in touch.</span>
+            </h2>
+            <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 48 48"
+                    style=" fill:#000000;">
+                    <linearGradient id="awSgIinfw5_FS5MLHI~A9a_yGcWL8copNNQ_gr1" x1="6.228" x2="42.077" y1="4.896"
+                        y2="43.432" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#0d61a9"></stop>
+                        <stop offset="1" stop-color="#16528c"></stop>
+                    </linearGradient>
+                    <path fill="url(#awSgIinfw5_FS5MLHI~A9a_yGcWL8copNNQ_gr1)"
+                        d="M42,40c0,1.105-0.895,2-2,2H8c-1.105,0-2-0.895-2-2V8c0-1.105,0.895-2,2-2h32	c1.105,0,2,0.895,2,2V40z">
+                    </path>
+                    <path
+                        d="M25,38V27h-4v-6h4v-2.138c0-5.042,2.666-7.818,7.505-7.818c1.995,0,3.077,0.14,3.598,0.208	l0.858,0.111L37,12.224L37,17h-3.635C32.237,17,32,18.378,32,19.535V21h4.723l-0.928,6H32v11H25z"
+                        opacity=".05"></path>
+                    <path
+                        d="M25.5,37.5v-11h-4v-5h4v-2.638c0-4.788,2.422-7.318,7.005-7.318c1.971,0,3.03,0.138,3.54,0.204	l0.436,0.057l0.02,0.442V16.5h-3.135c-1.623,0-1.865,1.901-1.865,3.035V21.5h4.64l-0.773,5H31.5v11H25.5z"
+                        opacity=".07"></path>
+                    <path fill="#fff"
+                        d="M33.365,16H36v-3.754c-0.492-0.064-1.531-0.203-3.495-0.203c-4.101,0-6.505,2.08-6.505,6.819V22h-4v4	h4v11h5V26h3.938l0.618-4H31v-2.465C31,17.661,31.612,16,33.365,16z">
+                    </path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 48 48"
+                    style=" fill:#000000;">
+                    <path fill="#03A9F4"
+                        d="M42,12.429c-1.323,0.586-2.746,0.977-4.247,1.162c1.526-0.906,2.7-2.351,3.251-4.058c-1.428,0.837-3.01,1.452-4.693,1.776C34.967,9.884,33.05,9,30.926,9c-4.08,0-7.387,3.278-7.387,7.32c0,0.572,0.067,1.129,0.193,1.67c-6.138-0.308-11.582-3.226-15.224-7.654c-0.64,1.082-1,2.349-1,3.686c0,2.541,1.301,4.778,3.285,6.096c-1.211-0.037-2.351-0.374-3.349-0.914c0,0.022,0,0.055,0,0.086c0,3.551,2.547,6.508,5.923,7.181c-0.617,0.169-1.269,0.263-1.941,0.263c-0.477,0-0.942-0.054-1.392-0.135c0.94,2.902,3.667,5.023,6.898,5.086c-2.528,1.96-5.712,3.134-9.174,3.134c-0.598,0-1.183-0.034-1.761-0.104C9.268,36.786,13.152,38,17.321,38c13.585,0,21.017-11.156,21.017-20.834c0-0.317-0.01-0.633-0.025-0.945C39.763,15.197,41.013,13.905,42,12.429">
+                    </path>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+</body>
+
+</html>
