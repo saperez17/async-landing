@@ -40,7 +40,7 @@ async function fetchData(path, options) {
 
 const hideUIOnSuccessfullSearch = () => {
     const searchContainer = document.getElementById('search-container');
-    searchContainer.classList.add('invisible');
+    searchContainer.classList.add('hidden');
 }
 
 const loadSearchDetailsUI = async ({ details, images, seasonDetails }) => {
@@ -120,7 +120,7 @@ const restoreHomeUI = () => {
     overview.textContent = DEFAULT_COPY.overview;
     primaryImage?.setAttribute('src', DEFAULT_IMGS.searchMainImg)
     arrowGoBack.classList.add('hidden')
-    searchContainer.classList.remove('invisible');
+    searchContainer.classList.remove('hidden');
     searchInput.value = ""
     // searchContainer.classList.a('invisible');
     resultsList.innerHTML = '';
