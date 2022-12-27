@@ -88,7 +88,7 @@ const loadSearchDetailsUI = async ({ details, images, seasonDetails }) => {
 
 `).join('')}`
 
-    seasonsContentContainer.classList.remove('invisible')
+    seasonsContentContainer.classList.remove('hidden')
     imagesCarousel.classList.remove('hidden');
     landingImage.classList.add('hidden');
     carouselInner.innerHTML = imagesCarouselItemsHTML;
@@ -96,7 +96,6 @@ const loadSearchDetailsUI = async ({ details, images, seasonDetails }) => {
     titleSearchPrimary.textContent = details.name
     titleSearchSecondary.textContent = details.first_air_date.split('-')[0]
     overview.textContent = details.overview;
-    // primaryImage.setAttribute('src', posterImage.url)
     arrowGoBack.classList.remove('hidden')
     hideUIOnSuccessfullSearch()
 }
@@ -114,6 +113,7 @@ const restoreHomeUI = () => {
     const imagesCarousel = document.getElementById('images-carousel');
     const seasonsContent = document.getElementById('seasons-content');
     const seasonsContentContainer = document.getElementById('seasons-content-container');
+    const loadingText = document.getElementById('loading-text');
 
     titleSearchPrimary.textContent = DEFAULT_COPY.titleSearchPrimary
     titleSearchSecondary.textContent = DEFAULT_COPY.titleSearchSecondary
@@ -126,8 +126,9 @@ const restoreHomeUI = () => {
     resultsList.innerHTML = '';
     landingImage.classList.remove('hidden');
     imagesCarousel.classList.add('hidden');
-    seasonsContentContainer.classList.add('invisible')
+    seasonsContentContainer.classList.add('hidden')
     seasonsContent.innerHTML = '';
+    loadingText.textContent = '';
 }
 
 const fetchImages = async (imgId, imgSize) => {
@@ -142,6 +143,11 @@ const search = (type, options) => {
 
 const fetchDetails = async (id) => {
     const backdropImageSize = configurationAPI.images.backdrop_sizes[1];
+    const loadingText = document.getElementById('loading-text');
+    const resultsList = document.getElementById('search-results-list');
+
+    loadingText.textContent = '¡No te vayas, tu TV show favorito esta en camino! 😍'
+    resultsList.innerHTML = '';
     try {
         const details = await fetchData(`/tv\/${id}?`, {});
         const imagesData = await fetchData(`/tv\/${id}/images?`);
@@ -172,6 +178,7 @@ const onSearchInputSubmit = async (e) => {
         query: searchInput.value,
     }
 
+    loadingText.textContent = '...fui por tu info, ya vuelvo 🏃‍♂️';
     loadingText.classList.remove('invisible');
     try {
         const searchResults = await search('tv', queryParams);
@@ -185,7 +192,8 @@ const onSearchInputSubmit = async (e) => {
         </li>
         `).slice(0, 10).join('')}`
         resultsList.innerHTML = listItems;
-        loadingText.classList.toggle('invisible');
+        // loadingText.classList.toggle('invisible');
+        loadingText.textContent = ""
     } catch (e) {
         throw new Error('Error: ' + e)
     }
