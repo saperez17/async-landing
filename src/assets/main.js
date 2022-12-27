@@ -149,10 +149,10 @@ const fetchDetails = async (id) => {
     loadingText.textContent = '¡No te vayas, tu TV show favorito esta en camino! 😍'
     resultsList.innerHTML = '';
     try {
-        const details = await fetchData(`/tv\/${id}?`, {});
+        const details = await fetchData(`/tv\/${id}?`, {language:'es'});
         const imagesData = await fetchData(`/tv\/${id}/images?`);
 
-        const seasonDetails = await fetchData(`/tv\/${id}\/season\/${details.seasons?.[0].season_number}?`);
+        const seasonDetails = await fetchData(`/tv\/${id}\/season\/${details.seasons?.[0].season_number}?`, {language:'es,en'});
         const backdrops = imagesData.backdrops.slice(0, 3);
         const promisesBackdrops = [];
         for (let backdrop of backdrops) {
