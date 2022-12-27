@@ -20,7 +20,7 @@ var tvShowdata;
 window.addEventListener('DOMContentLoaded', async () => {
     const form = document.getElementById('form-search')
     form.addEventListener('submit', onSearchInputSubmit);
-    const storedData = await fetch('./assets/data.json');
+    const storedData = await fetch('https://saperez17.github.io/async-landing/assets/data.json');
     const storedDataJson = await storedData.json();
     tvShowdata = storedDataJson.tvShows;
     configurationAPI = storedDataJson.configuration
