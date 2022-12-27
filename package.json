@@ -4,7 +4,7 @@
   "description": "Landing page exercise for the asynchronous course with JS from Platzi",
   "main": "index.js",
   "scripts": {
-    "deploy": "gh-page -d src",
+    "deploy": "gh-pages -d src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

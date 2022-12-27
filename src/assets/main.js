@@ -1,5 +1,3 @@
-// import fetch from 'node-fetch'
-//https://api.themoviedb.org/3/tv/119051/images?&append_to_response=videos
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = '76d48019257b2d106ef2864ad9ce1ca6';
 
@@ -24,10 +22,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     form.addEventListener('submit', onSearchInputSubmit);
     const storedData = await fetch('../data.json');
     const storedDataJson = await storedData.json();
-    console.log('storedDataJson', storedDataJson)
     tvShowdata = storedDataJson.tvShows;
     configurationAPI = storedDataJson.configuration
-    console.log('here')
 })
 
 
@@ -65,8 +61,7 @@ const loadSearchDetailsUI = async ({ details, images, seasonDetails }) => {
         promisesSeasonImages.push(fetchImages(seasonDetail.still_path, seasonThumbnailSize))
     }
     const seasonImages = await Promise.all(promisesSeasonImages);
-    
-console.log('seasonImages',seasonImages)
+
     const imagesCarouselItemsHTML = `${images.map((image, idx) => `
         <div class="carousel-item ${idx === 0 && 'active'} relative float-left w-full">
             <img src="${image.url}" class="block w-full" alt="Wild Landscape" />
@@ -145,10 +140,6 @@ const search = (type, options) => {
     return fetchData(`/search\/${type}?`, { ...DEFAULT_SEARCH_OPTIONS, ...options });
 }
 
-const goBack = () => {
-
-}
-
 const fetchDetails = async (id) => {
     const backdropImageSize = configurationAPI.images.backdrop_sizes[1];
     try {
@@ -162,14 +153,6 @@ const fetchDetails = async (id) => {
             promisesBackdrops.push(fetchImages(backdrop.file_path, backdropImageSize))
         }
         const backdropImages = await Promise.all(promisesBackdrops);
-        // const posterImage = await fetchImages(imagesData.posters[0].file_path, configurationAPI.images.poster_sizes[5]);
-
-        // titleSearchPrimary.textContent = details.name
-        console.log('seasonDetails', seasonDetails)
-        // titleSearchSecondary.textContent = details.first_air_date.split('-')[0]
-        // overview.textContent = details.overview;
-        // primaryImage.setAttribute('src', posterImage.url)
-        // arrowGoBack.classList.remove('hidden')
         await loadSearchDetailsUI({ details, images: backdropImages, seasonDetails })
     } catch (e) {
         console.log('e', e)
